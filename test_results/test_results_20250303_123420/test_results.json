@@ -1,0 +1,26 @@
+{
+    "summary": {
+        "timestamp": "20250303_123420",
+        "total": 2,
+        "passed": 1,
+        "failed": 0,
+        "errors": 1,
+        "success_rate": "50.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC003",
+            "test_name": "Delete a Opportunity",
+            "status": "ERROR",
+            "error": "Page.screenshot: Target page, context or browser has been closed\nCall log:\n  - taking page screenshot\n  -   - waiting for fonts to load...\n  -   - fonts loaded\n",
+            "log_file": "logs/test_TC003_1740985460.log"
+        },
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "PASSED",
+            "execution_time": 11.737120389938354,
+            "log_file": "logs/test_TC002_1740985460.log"
+        }
+    ]
+}

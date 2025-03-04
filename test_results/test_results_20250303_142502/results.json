@@ -1,0 +1,18 @@
+[
+  {
+    "test_id": "TC003",
+    "test_name": "Second Test FIle a Opportunity",
+    "status": "PASSED",
+    "execution_time": 9.950727701187134,
+    "file": "New Microsoft Excel Worksheet.xlsx",
+    "log_file": "logs/excel_New Microsoft Excel Worksheet.xlsx_1740992102.log"
+  },
+  {
+    "test_id": "TC003",
+    "test_name": "Delete a Opportunity",
+    "status": "ERROR",
+    "error": "Page.screenshot: Target page, context or browser has been closed",
+    "file": "salesforce_test_cases.xlsx",
+    "log_file": "logs/excel_salesforce_test_cases.xlsx_1740992102.log"
+  }
+]

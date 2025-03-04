@@ -29,7 +29,9 @@ credentials.json
 # Test artifacts
 videos/
 screenshots/
+logs/
 
 # PyCharm files
 .idea/
 *.iml
+.idea/workspace.xml

@@ -1,0 +1,20 @@
+{
+    "summary": {
+        "timestamp": "20250303_160814",
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "errors": 0,
+        "success_rate": "100.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "PASSED",
+            "execution_time": 12.99664306640625,
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs/excel_salesforce_test_cases.xlsx_1740998294.log"
+        }
+    ]
+}

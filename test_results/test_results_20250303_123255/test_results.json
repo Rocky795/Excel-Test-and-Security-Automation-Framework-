@@ -1,0 +1,26 @@
+{
+    "summary": {
+        "timestamp": "20250303_123255",
+        "total": 2,
+        "passed": 0,
+        "failed": 0,
+        "errors": 2,
+        "success_rate": "0.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC003",
+            "test_name": "Delete a Opportunity",
+            "status": "ERROR",
+            "error": "ObjectRepository.__init__() missing 1 required positional argument: 'logger'",
+            "log_file": "logs/test_TC003_1740985375.log"
+        },
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "ERROR",
+            "error": "ObjectRepository.__init__() missing 1 required positional argument: 'logger'",
+            "log_file": "logs/test_TC002_1740985375.log"
+        }
+    ]
+}

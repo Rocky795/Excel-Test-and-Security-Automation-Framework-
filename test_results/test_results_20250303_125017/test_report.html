@@ -1,0 +1,99 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Salesforce Automation Test Report</title>
+        <style>
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+            .container { max-width: 1200px; margin: 0 auto; }
+            .header { background-color: #0288d1; color: white; padding: 20px; border-radius: 5px; margin-bottom: 20px; }
+            .summary { display: flex; justify-content: space-between; margin-bottom: 20px; }
+            .summary-card { background-color: white; border-radius: 5px; padding: 15px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex: 1; margin: 0 10px; text-align: center; }
+            .passed { color: #4caf50; }
+            .failed { color: #f44336; }
+            .error { color: #ff9800; }
+            table { width: 100%; border-collapse: collapse; }
+            th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+            th { background-color: #f5f5f5; }
+            tr:hover { background-color: #f5f5f5; }
+            .status-badge { padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+            .details-btn { padding: 5px 10px; background-color: #0288d1; color: white; border: none; border-radius: 4px; cursor: pointer; }
+            .test-details { display: none; padding: 10px; background-color: #f9f9f9; border-radius: 4px; margin-top: 10px; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Salesforce Automation Test Report</h1>
+                <p>Generated: 2025-03-03 12:50:32</p>
+            </div>
+            
+            <div class="summary">
+                <div class="summary-card">
+                    <h2>Total Tests</h2>
+                    <p style="font-size: 24px;">1</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Passed</h2>
+                    <p class="passed" style="font-size: 24px;">0</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Failed</h2>
+                    <p class="failed" style="font-size: 24px;">0</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Errors</h2>
+                    <p class="error" style="font-size: 24px;">1</p>
+                </div>
+                <div class="summary-card">
+                    <h2>Success Rate</h2>
+                    <p style="font-size: 24px;">0.00%</p>
+                </div>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Test ID</th>
+                        <th>Test Name</th>
+                        <th>Status</th>
+                        <th>Execution Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+            <tr>
+                <td>TC003</td>
+                <td>Delete a Opportunity</td>
+                <td><span class="status-badge error">ERROR</span></td>
+                <td>N/A</td>
+                <td><button onclick="toggleDetails('TC003')" class="details-btn">Details</button></td>
+            </tr>
+            <tr>
+                <td colspan="5">
+                    <div id="TC003_details" class="test-details">
+        <h4>Error:</h4><p>'ObjectRepository' object has no attribute 'logger'</p><p><a href="file://C:\Users\BhartiPr\PycharmProjects\SalesforceDemo\logs\test_TC003_1740986417.log" target="_blank">View Log File</a></p>
+                    </div>
+                </td>
+            </tr>
+        
+                </tbody>
+            </table>
+        </div>
+        
+        <script>
+            function toggleDetails(testId) {
+                const detailsElement = document.getElementById(testId + '_details');
+                if (detailsElement.style.display === 'block') {
+                    detailsElement.style.display = 'none';
+                } else {
+                    detailsElement.style.display = 'block';
+                }
+            }
+        </script>
+    </body>
+    </html>
+    

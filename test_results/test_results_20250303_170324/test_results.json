@@ -1,0 +1,55 @@
+{
+    "summary": {
+        "timestamp": "20250303_170324",
+        "total": 5,
+        "passed": 4,
+        "failed": 1,
+        "errors": 0,
+        "success_rate": "80.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "PASSED",
+            "execution_time": 12.564960479736328,
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC002_1741001620.log"
+        },
+        {
+            "test_id": "TC004",
+            "test_name": "Edit a Opportunity",
+            "status": "PASSED",
+            "execution_time": 9.248388767242432,
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC004_1741001633.log"
+        },
+        {
+            "test_id": "TC103",
+            "test_name": "Second Test FIle a Opportunity",
+            "status": "PASSED",
+            "execution_time": 9.999399423599243,
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC103_1741001620.log"
+        },
+        {
+            "test_id": "TC104",
+            "test_name": "Edit a Opportunity Old",
+            "status": "PASSED",
+            "execution_time": 8.919256210327148,
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC104_1741001631.log"
+        },
+        {
+            "test_id": "TC105",
+            "test_name": "Fail a Opportunity ",
+            "status": "FAILED",
+            "execution_time": 7.734819412231445,
+            "failed_steps": [
+                "Step 10: click fasdfa Save"
+            ],
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC105_1741001640.log"
+        }
+    ]
+}
