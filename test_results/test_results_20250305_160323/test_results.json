@@ -1,0 +1,66 @@
+{
+    "summary": {
+        "timestamp": "20250305_160323",
+        "total": 5,
+        "passed": 2,
+        "failed": 3,
+        "errors": 0,
+        "success_rate": "40.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "PASSED",
+            "execution_time": 13.113275527954102,
+            "screenshot_path": "screenshots/after_TC002_1741170830.png",
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC002_1741170818.log"
+        },
+        {
+            "test_id": "TC004",
+            "test_name": "Edit a Opportunity",
+            "status": "PASSED",
+            "execution_time": 8.14864206314087,
+            "screenshot_path": "screenshots/after_TC004_1741170839.png",
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC004_1741170831.log"
+        },
+        {
+            "test_id": "TC103",
+            "test_name": "Second Test FIle a Opportunity",
+            "status": "FAILED",
+            "execution_time": 35.07735633850098,
+            "failed_steps": [
+                "Step 6: click Opportunity record with value=\"Try1\""
+            ],
+            "screenshot_path": "screenshots/after_TC103_1741170855.png",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC103_1741170820.log"
+        },
+        {
+            "test_id": "TC104",
+            "test_name": "Edit a Opportunity Old",
+            "status": "FAILED",
+            "execution_time": 34.08254528045654,
+            "failed_steps": [
+                "Step 6: click Opportunity record with value=\"Try1\""
+            ],
+            "screenshot_path": "screenshots/after_TC104_1741170890.png",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC104_1741170855.log"
+        },
+        {
+            "test_id": "TC105",
+            "test_name": "Fail a Opportunity ",
+            "status": "FAILED",
+            "execution_time": 34.779134035110474,
+            "failed_steps": [
+                "Step 6: click Opportunity record with value=\"Try1\""
+            ],
+            "screenshot_path": "screenshots/after_TC105_1741170924.png",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC105_1741170890.log"
+        }
+    ]
+}

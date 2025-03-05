@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bfe32e5-6e36-4e5a-9315-309acb35dac8" name="Changes" comment="First commit">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generate_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/generate_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_cases/New Microsoft Excel Worksheet.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/New Microsoft Excel Worksheet.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_cases/salesforce_test_cases.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/test_cases/salesforce_test_cases.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test_execution.log" beforeDir="false" afterPath="$PROJECT_DIR$/test_execution.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/BhartiPr/OneDrive - Unisys/Desktop/CyberSecurity/Python",
     "settings.editor.selected.configurable": "com.intellij.pycharm.community.ide.impl.configuration.PythonContentEntriesConfigurable"
   }
 }]]></component>

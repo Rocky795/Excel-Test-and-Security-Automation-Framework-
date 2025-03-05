@@ -7,17 +7,15 @@ from datetime import datetime
 
 
 class GenerateReport:
-    def __init__(self, results: List[Dict[str, Any]], results_dir: str, timestamp: str, logger=None):
+    def __init__(self, results, results_dir, timestamp, logger=None):
         self.results = results
         self.results_dir = results_dir
         self.timestamp = timestamp
-        self.logger=logging.getLogger("SalesforceAutomation")
-    
+        self.logger = logger or logging.getLogger("SalesforceAutomation")
     
     def generate_report(self):
         """Generate HTML and JSON reports from test results"""
-        # Calculate statistics
-        results = self.results  # Use instance variable
+        results = self.results  # instance variable
         results_dir = self.results_dir
         total = len(results)
         passed = sum(1 for r in results if r["status"] == "PASSED")
@@ -114,13 +112,7 @@ class GenerateReport:
         
         for result in results:
             self.logger.info(f"Result data: {result}")
-            status_class = ""
-            if result["status"] == "PASSED":
-                status_class = "passed"
-            elif result["status"] == "FAILED":
-                status_class = "failed"
-            else:
-                status_class = "error"
+            status_class = "passed" if result["status"] == "PASSED" else ("failed" if result["status"] == "FAILED" else "error")
             
             execution_time = result.get("execution_time", "N/A")
             if isinstance(execution_time, (int, float)):
@@ -148,13 +140,20 @@ class GenerateReport:
             if "error" in result:
                 html_content += f"<h4>Error:</h4><p>{result['error']}</p>"
             
+            # Link for log file using a proper file URI:
             if "log_file" in result:
-                log_link = os.path.abspath(result["log_file"])
-                html_content += f'<p><a href="file://{log_link}" target="_blank">View Log File</a></p>'
+                log_uri = Path(result["log_file"]).resolve().as_uri()
+                html_content += f'<p><a href="{log_uri}" target="_blank">View Log File</a></p>'
             
-            if "screenshot" in result:
-                screenshot_path = result[""]
-                html_content += f'<p><a href="file:///{screenshot_path}" target="_blank">View Screenshot</a></p>'
+            # Link for screenshot if available:
+            if "screenshot_path" in result:
+                screenshot_uri = Path(result["screenshot_path"]).resolve().as_uri()
+                html_content += f'<p><a href="{screenshot_uri}" target="_blank">View Screenshot</a></p>'
+            
+            # Link for video if available:
+            if "video_path" in result:
+                video_uri = Path(result["video_path"]).resolve().as_uri()
+                html_content += f'<p><a href="{video_uri}" target="_blank">View Video</a></p>'
             
             html_content += """
                         </div>

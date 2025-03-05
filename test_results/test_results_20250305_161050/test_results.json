@@ -1,0 +1,60 @@
+{
+    "summary": {
+        "timestamp": "20250305_161050",
+        "total": 5,
+        "passed": 2,
+        "failed": 1,
+        "errors": 2,
+        "success_rate": "40.00%"
+    },
+    "test_cases": [
+        {
+            "test_id": "TC002",
+            "test_name": "Create New Opportunity",
+            "status": "PASSED",
+            "execution_time": 14.764161348342896,
+            "screenshot_path": "screenshots/after_TC002_1741171278.png",
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC002_1741171263.log"
+        },
+        {
+            "test_id": "TC004",
+            "test_name": "Edit a Opportunity",
+            "status": "PASSED",
+            "execution_time": 11.111273765563965,
+            "screenshot_path": "screenshots/after_TC004_1741171289.png",
+            "file": "salesforce_test_cases.xlsx",
+            "log_file": "logs\\salesforce_test_cases.xlsx_TestCase_TC004_1741171278.log"
+        },
+        {
+            "test_id": "TC103",
+            "test_name": "Second Test FIle a Opportunity",
+            "status": "FAILED",
+            "execution_time": 35.997514486312866,
+            "failed_steps": [
+                "Step 6: click Opportunity record with value=\"Try1\""
+            ],
+            "screenshot_path": "screenshots/after_TC103_1741171299.png",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC103_1741171263.log"
+        },
+        {
+            "test_id": "TC104",
+            "test_name": "Edit a Opportunity Old",
+            "status": "ERROR",
+            "error": "Page.screenshot: Target page, context or browser has been closed",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC104_1741171300.log",
+            "screenshot": null
+        },
+        {
+            "test_id": "TC105",
+            "test_name": "Fail a Opportunity ",
+            "status": "ERROR",
+            "error": "Page.screenshot: Target page, context or browser has been closed",
+            "file": "New Microsoft Excel Worksheet.xlsx",
+            "log_file": "logs\\New Microsoft Excel Worksheet.xlsx_TestCase_TC105_1741171310.log",
+            "screenshot": null
+        }
+    ]
+}
