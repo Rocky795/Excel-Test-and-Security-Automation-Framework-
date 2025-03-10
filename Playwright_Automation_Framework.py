@@ -15,16 +15,39 @@ from enhanced_page_actions import PageActions
 from playwright.sync_api import sync_playwright
 from generate_report import GenerateReport
 
+timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+results_dir = f"test_results/test_results_{timestamp}"
+os.makedirs(results_dir, exist_ok=True)
+
+
 # Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("test_execution.log"),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
-logger = logging.getLogger("SalesforceAutomation")
+def setup_logging(timestamp=None):
+    """Setup logging with a unique timestamp-based filename"""
+    
+    # Create logs directory if it doesn't exist
+    logs_dir = os.path.join(results_dir, "logs")
+    os.makedirs(logs_dir, exist_ok=True)
+
+    
+    log_timestamp = timestamp or datetime.now().strftime("%Y%m%d_%H%M%S")
+    log_filename = f"{results_dir}/logs/salesforce_automation_{log_timestamp}.log"
+    
+    
+    
+    # Configure root logger
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler(log_filename),
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+    
+    logger = logging.getLogger("SalesforceAutomation")
+    logger.info(f"Logging initialized. Log file: {log_filename}")
+    
+    return logger, log_filename
 
 def setup_browser():
     """Setup a new browser instance and context"""
@@ -66,16 +89,17 @@ def execute_test_case(page, object_repo, test_case: Dict[str, Any], test_logger,
     context_vars = {}
     
     # Take screenshot before test
-    screenshot_dir=f"test_results/test_results_{timestamp}"
+    screenshot_dir=f"test_results/test_results_{timestamp}/screenshots"
     os.makedirs(screenshot_dir, exist_ok=True)
-    screenshot_path = f"{screenshot_dir}/befor{test_id}_{int(time.time())}.png"
-    page.screenshot(path=screenshot_path)
-    test_logger.info(f"Initial screenshot saved: {screenshot_path}")
+    before_screenshot_path = f"{screenshot_dir}/befor{test_id}_{int(time.time())}.png"
+    page.screenshot(path=before_screenshot_path)
+    test_logger.info(f"Initial screenshot saved: {before_screenshot_path}")
     
     # Track if test case passed
     test_passed = True
     failed_steps = []
     start_time = time.time()
+    failure_screenshot=None
     
     # Initialize page actions
     page_actions = PageActions(page, object_repo,test_logger)
@@ -99,7 +123,7 @@ def execute_test_case(page, object_repo, test_case: Dict[str, Any], test_logger,
             failed_steps.append(f"Step {step_num}: {step}")
             
             # Take screenshot of failure
-            failure_screenshot = f"screenshots/failure_{test_id}_step{step_num}_{int(time.time())}.png"
+            failure_screenshot = f"{screenshot_dir}/failure_{test_id}_step{step_num}_{int(time.time())}.png"
             page.screenshot(path=failure_screenshot)
             test_logger.error(f"Failure screenshot saved: {failure_screenshot}")
             
@@ -107,9 +131,9 @@ def execute_test_case(page, object_repo, test_case: Dict[str, Any], test_logger,
             break
     
     # Take screenshot after test
-    screenshot_path = f"screenshots/after_{test_id}_{int(time.time())}.png"
-    page.screenshot(path=screenshot_path)
-    test_logger.info(f"Final screenshot saved: {screenshot_path}")
+    after_screenshot_path = f"{screenshot_dir}/after_{test_id}_{int(time.time())}.png"
+    page.screenshot(path=after_screenshot_path)
+    test_logger.info(f"Final screenshot saved: {after_screenshot_path}")
     
     execution_time = time.time() - start_time
     
@@ -121,7 +145,7 @@ def execute_test_case(page, object_repo, test_case: Dict[str, Any], test_logger,
             "test_name": test_name,
             "status": "PASSED",
             "execution_time": execution_time,
-            "screenshot_path":screenshot_path,
+            "screenshot_path":failure_screenshot or after_screenshot_path,
            
         }
     else:
@@ -132,7 +156,7 @@ def execute_test_case(page, object_repo, test_case: Dict[str, Any], test_logger,
             "status": "FAILED",
             "execution_time": execution_time,
             "failed_steps": failed_steps,
-            "screenshot_path":screenshot_path,
+            "screenshot_path":failure_screenshot or after_screenshot_path,
         }    
     
     return result
@@ -143,7 +167,7 @@ def execute_excel_file(test_case_file: str,timestamp=None) -> List[Dict[str, Any
     
     # Create a specific logger for this excel file
     file_logger = logging.getLogger(f"ExcelFile_{excel_filename}")
-    log_file = f"logs/excel_{excel_filename}_{int(time.time())}.log"
+    log_file = f"{results_dir}/logs/excel_{excel_filename}_{int(time.time())}.log"
     os.makedirs("logs", exist_ok=True)
     file_handler = logging.FileHandler(log_file)
     file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
@@ -182,7 +206,7 @@ def execute_excel_file(test_case_file: str,timestamp=None) -> List[Dict[str, Any
                 test_case_logger.setLevel(logging.INFO)
                 
                 # Create a unique log file name for the test case
-                test_log_file = os.path.join("logs", f"{excel_filename}_TestCase_{test_id}_{int(time.time())}.log")
+                test_log_file = os.path.join(f"{results_dir}/logs", f"{excel_filename}_TestCase_{test_id}_{int(time.time())}.log")
                 file_handler = logging.FileHandler(test_log_file)
                 file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
                 
@@ -195,6 +219,10 @@ def execute_excel_file(test_case_file: str,timestamp=None) -> List[Dict[str, Any
                 result = execute_test_case(page, object_repo, test_case, test_case_logger,timestamp)
                 result["file"] = excel_filename
                 result["log_file"] = test_log_file
+                if page.video:
+                    result["video_path"] = page.video.path()
+                    test_case_logger.info(f"Video recorded at: {page.video.path()}")
+                
                 results.append(result)
                 
                 file_logger.info(f"Completed test case: [{result['test_id']}] {result['test_name']} - {result['status']}")
@@ -250,9 +278,8 @@ def run_tests_in_parallel(max_workers: int = 8):
         return []
     
     # Create results directory
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    results_dir = f"test_results/test_results_{timestamp}"
-    os.makedirs(results_dir, exist_ok=True)
+    
+    
     
     logger.info(f"Total Excel files to process: {len(test_case_files)}")
     
@@ -285,6 +312,8 @@ def run_tests_in_parallel(max_workers: int = 8):
             except Exception as e:
                 logger.error(f"Exception processing Excel file {file_name}: {str(e)}")
     
+    for result in all_results:
+        result["main_log_file"] = main_log_file
     # Save overall results to file
     # results_file = os.path.join(results_dir, "results.json")
     # with open(results_file, 'w') as f:
@@ -292,21 +321,24 @@ def run_tests_in_parallel(max_workers: int = 8):
     # logger.info(f"Test results saved to {results_file}")
     
     
-    return all_results,results_dir,timestamp
+    return all_results,timestamp
 
 if __name__ == "__main__":
     # Create directory structure
     for directory in ["logs", "screenshots", "videos", "test_cases", "test_results", "object_repository"]:
         os.makedirs(directory, exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    logger, main_log_file = setup_logging(timestamp)
     
     # Run tests in parallel
     max_threads = int(os.getenv("MAX_THREADS", "8"))
     logger.info(f"Starting test execution with {max_threads} parallel threads (one thread per Excel file)")
     
-    results,results_dir,timestamp = run_tests_in_parallel(max_workers=max_threads)
+    results,timestamp = run_tests_in_parallel(max_workers=max_threads)
     
     
-    report = GenerateReport(results, results_dir, timestamp)
+    report = GenerateReport(results, results_dir, timestamp,logger,main_log_file)
     html_report, json_report = report.generate_report()
 
     print(f"HTML report generated at: {html_report}")

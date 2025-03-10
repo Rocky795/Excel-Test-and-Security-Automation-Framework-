@@ -7,11 +7,12 @@ from datetime import datetime
 
 
 class GenerateReport:
-    def __init__(self, results, results_dir, timestamp, logger=None):
+    def __init__(self, results, results_dir, timestamp,Logger=None,results_log_file=None):
         self.results = results
         self.results_dir = results_dir
         self.timestamp = timestamp
-        self.logger = logger or logging.getLogger("SalesforceAutomation")
+        self.results_log_file=results_log_file
+        self.logger = Logger or logging.getLogger("SalesforceAutomation")
     
     def generate_report(self):
         """Generate HTML and JSON reports from test results"""
@@ -72,6 +73,7 @@ class GenerateReport:
                 <div class="header">
                     <h1>Salesforce Automation Test Report</h1>
                     <p>Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}</p>
+                    <p>Main Logs: <a href="../../{self.results_log_file}" class="details-btn" target="_blank">Main Logs</a></p>
                 </div>
                 
                 <div class="summary">
@@ -95,6 +97,7 @@ class GenerateReport:
                         <h2>Success Rate</h2>
                         <p style="font-size: 24px;">{(passed/total)*100:.2f}%</p>
                     </div>
+
                 </div>
                 
                 <table>

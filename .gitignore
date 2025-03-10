@@ -16,6 +16,7 @@ credentials.json
 videos/
 screenshots/
 logs/
+test_results/
 
 # PyCharm files
 .idea/
